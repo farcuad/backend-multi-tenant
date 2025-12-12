@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: mi-api-inventario
+    env: php
+    plan: starter # O el plan que desees
+    buildCommand: 'composer install && php artisan migrate --force && php artisan key:generate --force'
+    startCommand: 'php artisan serve --host=0.0.0.0 --port=$PORT'
+    rootDir: /
+    # Si tu punto de entrada es la carpeta 'public', descomenta la línea de abajo:
+    # publishPath: public 
+    envVars:
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_ENV
+        value: production
+      - key: DB_CONNECTION
+        value: pgsql
+      # Debes agregar tus variables de Supabase aquí o definirlas en la interfaz de Render.
+      # - key: DB_HOST
+      #   value: 'tu_host_de_supabase'
+      # ... y el resto de las credenciales (DB_DATABASE, DB_USERNAME, etc.)
