@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Store;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Product extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected  $fillable = [
         'name',
         'description',

@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'zerobounce' => [
+        'key' => env('ZEROBOUNCE_API_KEY'),
+    ],
+
 ];

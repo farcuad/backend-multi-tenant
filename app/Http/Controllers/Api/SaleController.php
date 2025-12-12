@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Http\Requests\StoreSaleRequest; 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Controller;
 class SaleController extends Controller
 {
     public function store(StoreSaleRequest $request)

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\ProductResource;
+use App\Http\Controllers\Controller;
 class ProductController extends Controller
 {
     // C(R)UD: LISTAR TODOS LOS PRODUCTOS DE LA TIENDA

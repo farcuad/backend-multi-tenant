@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Store;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {

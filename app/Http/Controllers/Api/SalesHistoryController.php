@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Sale;
 use App\Http\Resources\SalesHistoryResource;
+use App\Http\Controllers\Controller;
 class SalesHistoryController extends Controller
 {
     public function index(Request $request)
