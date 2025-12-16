@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "functions": {
+    "api/index.php": {
+      "runtime": "vercel-php@8.2.12"
+    }
+  },
+  "routes": [
+    {
+      "src": "/build/assets/(.*)",
+      "dest": "/build/assets/$1"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/public/images/$1"
+    },
+    {
+      "src": "/(.*\\.php)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
+  ],
+  "env": {
+    "APP_ENV": "production" 
+  }
+}
