@@ -1,11 +1,24 @@
 <?php 
 // Definir la ruta de storage en /tmp (Serverless)
-$_SERVER['SCRIPT_FILENAME'] = __DIR__ . '/../public/index.php';
-$_SERVER['SCRIPT_NAME'] = '/index.php';
+define('LARAVEL_START', microtime(true));
 
-// Sobreescribe la variable de entorno de Laravel para que use /tmp
-putenv('LARAVEL_STORAGE_PATH=/tmp/storage');
+die('A'); // ¿Muestra A?
 
-// Ejecuta la aplicación
-require __DIR__ . '/../public/index.php';
+require __DIR__.'/../vendor/autoload.php';
+
+die('B'); // ¿Muestra B?
+
+/*
+|--------------------------------------------------------------------------
+| Run The Application
+|--------------------------------------------------------------------------
+|
+| This script returns the application instance that is used to serve the
+| incoming request from the client to this application. We'll start it
+| up and load any necessary services and dependencies.
+|
+*/
+$app = require_once __DIR__.'/../bootstrap/app.php';
+
+die('C'); // ¿Muestra C?
 ?>
