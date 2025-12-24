@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class Productpolicy
+class ProductPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -37,7 +37,7 @@ class Productpolicy
      */
     public function update(User $user, Product $product): bool
     {
-        return $user->role === 'admin' && $user->store_id === $product->store_id;
+        return $user->role === 'admin' && $user->store_id == $product->store_id;
     }
 
     /**
@@ -45,6 +45,6 @@ class Productpolicy
      */
     public function delete(User $user, Product $product): bool
     {
-        return $user->role === 'admin' && $user->store_id === $product->store_id;
+        return $user->role === 'admin' && $user->store_id == $product->store_id;
     }
 }

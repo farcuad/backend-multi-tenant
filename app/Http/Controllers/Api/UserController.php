@@ -11,8 +11,6 @@ class UserController extends Controller
 {
     public function index()
     {
-        
-
         $storeId = auth()->user()->store_id;
 
         $user = User::where('store_id', $storeId)
