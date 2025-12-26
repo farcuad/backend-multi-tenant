@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Sale;
 use App\Models\Product;
+
 class SaleDetails extends Model
 {
     protected $table = 'sales_details';

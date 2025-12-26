@@ -14,8 +14,7 @@ class SalesHistoryController extends Controller
         $sales = Sale::with([
             'user:id,name',
             'products' => function ($query) {
-                $query->select('products.id', 'products.name')
-                 ->withPivot('quantity', 'price', 'total');
+                $query->select('products.id', 'products.name');
             }
         ])
         ->latest()

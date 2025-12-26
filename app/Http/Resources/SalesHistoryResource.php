@@ -32,9 +32,9 @@ class SalesHistoryResource extends JsonResource
                     return [
                         'product_id' => $product->id,
                         'name' => $product->name,
-                        'unit_price' => number_format($product->pivot->price, 2, '.', ''),
-                        'quantity' => $product->pivot->quantity,
-                        'line_total' => number_format($product->pivot->total, 2, '.', ''),
+                        'unit_price' => number_format($product->pivot->price ?? 0, 2, '.', ''),
+                        'quantity' => $product->pivot->quantity ?? 0,
+                        'line_total' => number_format($product->pivot->total ?? 0, 2, '.', ''),
                     ];
                 });
             }),
