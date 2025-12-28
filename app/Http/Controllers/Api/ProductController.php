@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
 
         $this->authorize('viewAny', Product::class);
-        $products = Product::orderBy('name')->paginate(15);
+        $products = Product::orderBy('name')->get();
         return ProductResource::collection($products);
     }
 
