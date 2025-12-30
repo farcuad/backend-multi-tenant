@@ -12,8 +12,7 @@ class SaleController extends Controller
 {
     public function store(StoreSaleRequest $request)
     {
-        // 🔑 1. AUTORIZACIÓN: Asegurar que el usuario tiene permiso para crear ventas
-        // Esto asume que tienes un SalePolicy con un método 'create'.
+        //Autorizamos la acción usando la policy
         $this->authorize('create', Sale::class);
 
         try 
@@ -29,7 +28,7 @@ class SaleController extends Controller
 
             foreach ($request->products as $item) {
                 
-                // 🔑 2. SEGURIDAD/VALIDACIÓN: El Global Scope asegura que solo se busquen productos de la tienda del usuario.
+                // Buscar el producto asegurando que pertenece a la tienda del usuario autenticado
                 $product = Product::find($item['id']);
 
                 // Si el producto no existe O no pertenece a la tienda del usuario, $product es null.
@@ -40,15 +39,15 @@ class SaleController extends Controller
                 $quantity = $item['quantity'];
                 $lineTotal = $product->price * $quantity;
 
-                // 3. VALIDACIÓN DE STOCK
+                //  Validamos Stock
                 if ($product->stock < $quantity) {
                     throw new \Exception("Stock insuficiente para el producto: " . $product->name . ". Stock disponible: " . $product->stock);
                 }
 
-                // 4. DECREMENTAR STOCK (Dentro de la transacción)
+                //  Si hay suficiente stock, decrementarlo
                 $product->decrement('stock', $quantity);
 
-                // 5. ACUMULAR TOTAL Y ADJUNTAR AL PIVOT
+                // Acumular total y registrar detalles de la venta
                 $totalVenta += $lineTotal;
 
                 $sale->products()->attach($product->id, [
@@ -58,7 +57,7 @@ class SaleController extends Controller
                 ]);
             }
 
-            // 6. ACTUALIZAR TOTAL DE LA VENTA
+            // Actualizamos el total de la venta
             $sale->update(['total' => $totalVenta]);
             DB::commit();
 

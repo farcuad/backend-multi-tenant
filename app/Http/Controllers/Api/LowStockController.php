@@ -9,7 +9,7 @@ class LowStockController extends Controller
 {
     public function index()
     {
-        $lowStockProducts = Product::where('stock', '<=', 5)->get();
+        $lowStockProducts = Product::whereColumn('stock', '<=', 'min_stock')->orderBy('stock', 'asc')->get();
         return LowStockAlertResource::collection($lowStockProducts);
     }
 }

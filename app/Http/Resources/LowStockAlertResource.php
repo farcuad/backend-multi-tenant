@@ -16,8 +16,8 @@ class LowStockAlertResource extends JsonResource
     {
         return [
             'message' => 'Stock bajo para el producto ' . $this->name,
-            'current_stock' => $this->stock,
             'product_id' => $this->id,
+            'current_stock' => $this->stock,
             'min_stock_level' => $this->min_stock,
         ];
     }
