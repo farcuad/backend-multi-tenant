@@ -33,7 +33,7 @@ class Product extends Model
             if (Auth::check()) {
                 $user = Auth::user();
                 
-                // Si el usuario tiene store_id, aplicamos el filtro multi-tenancy.
+                // Si el usuario tiene store_id, aplicamos el filtro multi-tenancy
                 if (!is_null($user->store_id)) {
                     $builder->where('store_id', $user->store_id);
                 } else {
