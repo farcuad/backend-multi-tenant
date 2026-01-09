@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\ProductResource;
 use App\Http\Controllers\Controller;
+
 class ProductController extends Controller
 {
     // C(R)UD: LISTAR TODOS LOS PRODUCTOS DE LA TIENDA
@@ -30,7 +31,13 @@ class ProductController extends Controller
         $data['user_id'] = $user->id;
         if ($request->hasFile('image')) {
             $storeId = Auth::user()->store_id ?? 'default';
-            $path = $request->file('image')->store('products/' . $storeId, 'public');
+            Storage::disk('public')->makeDirectory("products/{$storeId}");
+
+            $path = $request->file('image')->store(
+                "products/{$storeId}",
+                'public'
+            );
+
             $data['image'] = $path;
         }
 
